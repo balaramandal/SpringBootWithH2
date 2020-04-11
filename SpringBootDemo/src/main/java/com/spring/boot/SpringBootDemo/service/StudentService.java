@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.spring.boot.SpringBootDemo.model.Student;
@@ -20,7 +21,7 @@ public class StudentService {
 		return studentRepo.findAll();
 	}
 	public List<Student> findAllByProperties(String order,String property){
-		return studentRepo.findAll(Sort.by(direction, {property}));
+		return studentRepo.findAll(Sort.by(Direction.fromString(order), new String[]{property}));
 	}
 	public void remove(Long id) {
 		studentRepo.deleteById(id);
